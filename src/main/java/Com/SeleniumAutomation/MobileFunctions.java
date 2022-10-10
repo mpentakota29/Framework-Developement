@@ -42,7 +42,7 @@ public class MobileFunctions extends DriverScript {
 //		// TODO Auto-generated constructor stub
 //	}
 
-	public MobileFunctions(org.openqa.selenium.WebDriver WebDriver, String Path) {
+	public MobileFunctions(org.openqa.selenium.WebDriver WebDriver, String Path) throws IOException {
 		super(WebDriver, Path);
 		// TODO Auto-generated constructor stub
 	}

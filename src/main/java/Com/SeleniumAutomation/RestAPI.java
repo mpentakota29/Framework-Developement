@@ -1,4 +1,5 @@
 package Com.SeleniumAutomation;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -9,7 +10,7 @@ public class RestAPI extends DriverScript {
 	
 
 
-	public RestAPI(org.openqa.selenium.WebDriver WebDriver, String Path) {
+	public RestAPI(org.openqa.selenium.WebDriver WebDriver, String Path) throws IOException {
 		super(WebDriver, Path);
 		// TODO Auto-generated constructor stub
 	}
