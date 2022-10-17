@@ -365,6 +365,8 @@ public class CommonFunctions extends Thread
 			dir.mkdir();
 			FileUtils.copyDirectory(srcDir, dir);
 			savedlocation = opath + "/Reports/" + suitename;
+			Thread.currentThread().setName(savedlocation + ":-:" + suitename);
+
 		} catch (Exception e) {
 			System.out.println("exception value : " + e.getMessage());
 		}
@@ -781,7 +783,7 @@ public class CommonFunctions extends Thread
 
 	
 	
-	public static boolean LAUNCHCHROMEDOCKER(WebDriver WebDriver,String parameters,String Brows) throws IOException, InterruptedException 
+	public static WebDriver LAUNCHCHROMEDOCKER(WebDriver WebDriver,String parameters,String Brows) throws IOException, InterruptedException
 	{
       
 		
@@ -830,9 +832,9 @@ public class CommonFunctions extends Thread
 			login(WebDriver, args[1] + "->" + args[2]);
 			
 			//ssslogin(driver, args[1] + "->" + args[2]);
-			return true;
+			return WebDriver;
 		} else {
-			return false;
+			return WebDriver;
 			
 			
 			
@@ -845,7 +847,7 @@ public class CommonFunctions extends Thread
 		}
 	} catch (Exception e) {
 		System.out.println(e.getMessage());
-		return false;
+		return WebDriver;
 	}
 		
 	}
@@ -1178,7 +1180,7 @@ static //	public static void launchThread(WebDriver driver,String parameters)
 		
 	
 
-	
+	 static  WebDriver globaldriver;
 
 	public static boolean LAUNCHBROWSER(WebDriver WebDriver, String parameters)
 			throws InterruptedException, AWTException, IOException, ClassNotFoundException, SQLException,
@@ -1226,7 +1228,7 @@ static //	public static void launchThread(WebDriver driver,String parameters)
        			// SuiteFilepath = dir + "\\SuiteFiles\\SuiteFile3.xlsx";
        		   //  CommonFunctions t3 = new CommonFunctions(driver,parameters,"chrome");
        		     
-       		 LAUNCHCHROMEDOCKER(WebDriver,parameters,"chrome");
+       	globaldriver =	 LAUNCHCHROMEDOCKER(WebDriver,parameters,"chrome");
        		
           //	 t1.start();
           	 
@@ -1257,8 +1259,8 @@ static //	public static void launchThread(WebDriver driver,String parameters)
             	 else if(DriverScript.dockerChromelaunch) 
             	 {
             		// LAUNCHCHROMEDOCKER(parameters); 
-            		 
-            		 
+
+					globaldriver = LAUNCHCHROMEDOCKER(WebDriver,parameters,"chrome");
             	 }
             	 
             	 
@@ -1453,7 +1455,7 @@ static //	public static void launchThread(WebDriver driver,String parameters)
 			throws InterruptedException, AWTException, IOException, ClassNotFoundException, SQLException,
 			InstantiationException, IllegalAccessException, Exception, StaleElementReferenceException {
 		try {
-			WebDriver.quit();
+			globaldriver.close();
 			System.out.println("successfully closed all browsers");
 			return true;
 
@@ -1720,7 +1722,7 @@ static //	public static void launchThread(WebDriver driver,String parameters)
 			}
 			if (xpath != null) {
 				Thread.sleep(30000);
-				WebElement locator = Getlocator(WebDriver, xpath);
+				WebElement locator = Getlocator(globaldriver, xpath);
 				//String ovalue = locator.getAttribute("value");
 				//if (ovalue == null || ovalue == "") {
 				

@@ -106,15 +106,20 @@ public class ReportFunctions extends CommonFunctions {
 
 	        strStepType = strStepType1;
 	        //StrStepDescription = StrStepDescription1;
-	        StrStepDescription = hmap.get(Tstep);
-	        strStepStatus = strStepStatus1;
-	        xmlSavedLocation = savedlocation+"//XmlReport.xml";
-	        screenshotFilePath = savedlocation + "//img/screenshots//";
-//			 ReportSuiteName = strTestSuiteName;
-//			 ReportCaseName = strTestCaseName;
-//			 ReportStepName = strTestStepName;
 
-	        try {
+			StrStepDescription = hmap.get(Tstep);
+			strStepStatus = strStepStatus1;
+//         xmlSavedLocation = savedlocation+"//XmlReport.xml";
+//         screenshotFilePath = savedlocation + "//img/screenshots//";
+			String []arr = Thread.currentThread().getName().split(":-:");
+			xmlSavedLocation = arr[0]   +   "//XmlReport.xml";
+			screenshotFilePath = arr[0] + "//img/screenshots//";
+
+			strTestSuiteName = arr[1];
+//        ReportSuiteName = strTestSuiteName;
+//        ReportCaseName = strTestCaseName;
+//        ReportStepName = strTestStepName;
+			try {
 	            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	            DocumentBuilder dBuilder;
 	            dBuilder = dbFactory.newDocumentBuilder();

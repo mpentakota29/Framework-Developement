@@ -138,8 +138,9 @@ public void run()
 		
 		
 		//startDockerGrid();
+		DriverScript ds = new DriverScript(driver2,"AmazonSuite");
 		DriverScript ds2 = new DriverScript(driver,"FlipkartSuite");
-	    DriverScript ds = new DriverScript(driver2,"AmazonSuite");
+
 	    
 		Thread th  = new Thread(ds2);
 		//Thread.sleep(6000);
@@ -388,15 +389,19 @@ public void run()
 				 * the row value in finval variable
 				 */
 				do {
-					for (colval = 0; colval <= colcount - 1; colval++) {
+					for (colval = 0; colval <= colcount - 1; colval++)
+					{
 						Row ro = sheet.getRow(Rowval);
 
-						if (ro != null) {
+						if (ro != null)
+
+						{
 						   cell = sheet.getRow(Rowval).getCell(colval);
 							int cel_Type = cell.getCellType();
 							switch (cell.getCellType()) {
 							case Cell.CELL_TYPE_NUMERIC:
-								if (DateUtil.isCellDateFormatted(sheet.getRow(Rowval).getCell(colval))) {
+								if
+								(DateUtil.isCellDateFormatted(sheet.getRow(Rowval).getCell(colval))) {
 									odate = cell.getDateCellValue();
                                     break;
 								} else {
